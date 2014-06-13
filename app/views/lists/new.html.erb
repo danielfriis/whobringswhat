@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1>New list</h1>
+	</div>
+
+	<div class="panel-body">
+		<div class="row">
+		  <div class="col-lg-12">
+				<%= form_for @list, class: "input-group" do |f| %>
+					<%= render 'shared/error_messages', object: f.object %>
+					<%= render 'fields', f:f %>
+					<p>
+						<%= f.submit 'New list', class: "btn btn-default pull-right" %>
+					</p>
+				<% end %>
+
+				<p><%= link_to "Back", root_path %></p>
+			</div>
+		</div>
+	</div>
+</div>

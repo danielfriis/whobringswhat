@@ -1,0 +1,19 @@
+<!-- Task -->
+<%= link_to(pick_task_path(task_id: task.id), id: "task_#{task.id}", class: "list-group-item without-form", remote: true) do %>
+	<%= task.title %><% if task.picker? %><span class="text-muted pull-right">Picked by <strong><%= task.picker %></strong></span><% end %>
+<% end %>
+
+<!-- Picker for task and delete -->
+<div id="pick_task_<%= task.id %>" class="list-group-item with-form" style="display:none;">
+  <%= form_for([task.list, task]) do |f| %>	
+  	<div class="input-group">
+	  	
+	  	<%= f.text_field :picker, id: "task_#{task.id}", class: "form-control picker", placeholder: "#{task.title} is picked by ...?" %>
+		  <div class="input-group-btn">
+	    	<%= f.submit "Save", class: "btn btn-default" %>
+	    	<%= link_to 'Delete item', [task.list, task], class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } %>
+	    	<!-- <button type="button" class="btn btn-default text-muted" tabindex="1">Delete</button> -->
+	  	</div>
+  	</div>
+  <%  end %>
+</div>
